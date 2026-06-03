@@ -17,5 +17,8 @@ namespace SystemsTests {
             Assert.Equal(initialArea - captured1 - captured2, manager.PlayAreaArea);
             Assert.Equal(70, manager.Score);
         }
+        [Fact] public void BallController_UpdatePosition_UpdatesCorrectly() { var ball = new BallController { position = new Vector2(0, 0), velocity = new Vector2(2, 3) }; ball.UpdatePosition(0.5f); Assert.Equal(1.0f, ball.position.x); Assert.Equal(1.5f, ball.position.y); }
+        [Fact] public void BallController_UpdatePosition_NegativeVelocity() { var ball = new BallController { position = new Vector2(10, 10), velocity = new Vector2(-2, -4) }; ball.UpdatePosition(2.0f); Assert.Equal(6.0f, ball.position.x); Assert.Equal(2.0f, ball.position.y); }
+        [Fact] public void BallController_UpdatePosition_ZeroVelocity() { var ball = new BallController { position = new Vector2(5, 5), velocity = new Vector2(0, 0) }; ball.UpdatePosition(1.0f); Assert.Equal(5.0f, ball.position.x); Assert.Equal(5.0f, ball.position.y); }
     }
 }

@@ -12,12 +12,14 @@ namespace SystemsProject.TestGames {
         }
         public void OnAreaCaptured(float areaCaptured) { PlayAreaArea -= areaCaptured; Score += (int)areaCaptured; }
         public void CheckCollisions() {
-            foreach (var ball in Balls) {
-                foreach (var wall in Walls) {
-                    if (wall.IsBuilding) {
-                        float dist = Vector2.Distance(ball.position, wall.currentPosition);
-                        if (dist < 1.0f) { Player.LoseLife(); wall.DestroyWall(); }
-                    }
+            foreach (var wall in Walls) {
+                if (!wall.IsBuilding) continue;
+                float wx = wall.currentPosition.x;
+                float wy = wall.currentPosition.y;
+                foreach (var ball in Balls) {
+                    float dx = ball.position.x - wx;
+                    float dy = ball.position.y - wy;
+                    if (dx * dx + dy * dy < 1.0f) { Player.LoseLife(); wall.DestroyWall(); break; }
                 }
             }
         }

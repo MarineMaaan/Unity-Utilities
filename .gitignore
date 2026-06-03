@@ -1,0 +1,12 @@
+[Bb]in/
+[Oo]bj/
+TestResults/
+*.log
+*.txt
+*.cache
+*.json
+*.targets
+*.editorconfig
+**/obj/**
+**/bin/**
+**/TestResults/**
